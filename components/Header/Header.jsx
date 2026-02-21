@@ -109,7 +109,7 @@ const Header = () => {
             )}
           </div>
 
-          <Link href="/career" className="font-semibold text-[#102a43] hover:text-[#fd741e]">Careers</Link>
+          <Link href="/careers" className="font-semibold text-[#102a43] hover:text-[#fd741e]">Careers</Link>
           <Link href="/about-us" className="font-semibold text-[#102a43] hover:text-[#fd741e]">About Us</Link>
         </menu>
 
@@ -137,12 +137,13 @@ const Header = () => {
           <nav className="p-6 flex flex-col gap-5 overflow-y-auto h-[calc(100vh-160px)]">
             {/* Mobile Services */}
             <div>
+             <Link href={'/services'}>
               <button 
                 onClick={() => setMobileSubMenu(mobileSubMenu === "services" ? null : "services")}
                 className="flex items-center justify-between w-full font-bold text-[#102a43]"
               >
                 Services {mobileSubMenu === "services" ? <IoIosArrowUp /> : <IoIosArrowDown />}
-              </button>
+              </button></Link>
               {mobileSubMenu === "services" && (
                 <div className="pl-4 mt-3 flex flex-col gap-3 border-l-2 border-orange-200">
                   {servicesData.map((item, i) => (
@@ -176,7 +177,7 @@ const Header = () => {
               )}
             </div>
 
-            <Link href="/career" onClick={closeMobileMenu} className="font-bold text-[#102a43]">Careers</Link>
+            <Link href="/careers" onClick={closeMobileMenu} className="font-bold text-[#102a43]">Careers</Link>
             <Link href="/about-us" onClick={closeMobileMenu} className="font-bold text-[#102a43]">About Us</Link>
           </nav>
 
