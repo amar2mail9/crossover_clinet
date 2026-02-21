@@ -1,8 +1,25 @@
-import { dateFormate } from "@/utils/UseFuncation";
-import { Divider } from "@mui/material";
-import Link from "next/link";
-import { FaArrowRight, FaCalendar, FaUber, FaUser } from "react-icons/fa6";
+"use client";
 
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Divider } from "@mui/material";
+
+import { dateFormate } from "@/utils/UseFuncation";
+import { HiOutlineBadgeCheck } from "react-icons/hi";
+
+import {
+  FaArrowRight,
+  FaArrowRightLong,
+  FaArrowTrendUp,
+  FaBriefcase,
+  FaCalendar,
+  FaUber,
+  FaUser,
+} from "react-icons/fa6";
+
+import { IoMdArrowDropright, IoMdCalendar } from "react-icons/io";
+import { MdLocationOn, MdMoney, MdOutlinePayments, MdWorkOutline } from "react-icons/md";
 export const ServiceCard = ({
   servicesName,
   category,
@@ -118,5 +135,216 @@ export const LatestBlogCard = ({
         </section>
       </section>
     </section>
+  );
+};
+
+
+export const CareerCard = ({
+  title,
+  company,
+  location,
+  stipend,
+  duration,
+  sector,
+  workType,
+  level,
+  index = 0,
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.1,
+      }}
+      whileHover={{
+        y: -10,
+        transition: { duration: 0.3 },
+      }}
+      className="w-full p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 group flex flex-col h-full"
+    >
+      {/* 1. Header: Badges & Title */}
+      <div className="space-y-3">
+        <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-wider border border-green-100">
+            <FaArrowTrendUp className="animate-pulse" /> Actively Hiring
+          </div>
+          <div className="px-3 py-1 rounded-full bg-orange-50 text-orange-600 text-[10px] font-bold uppercase tracking-wider border border-orange-100">
+            {sector}
+          </div>
+        </div>
+
+        <div className="pt-2">
+          <h3 className="text-xl font-bold text-[#102a42] group-hover:text-orange-600 transition-colors line-clamp-1">
+            {title}
+          </h3>
+          <p className="text-sm text-gray-500 font-medium">{company}</p>
+        </div>
+      </div>
+
+      {/* 2. Middle Content: Detailed Info */}
+      <div className="flex-grow py-6 space-y-4">
+        {/* Location & Work Type */}
+        <div className="flex items-center gap-3 text-gray-600">
+          <div className="p-2 bg-gray-50 rounded-xl group-hover:bg-orange-50 group-hover:text-orange-500 transition-colors">
+            <MdLocationOn className="text-xl" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold">{location}</span>
+            <span className="text-[11px] text-gray-400">{workType}</span>
+          </div>
+        </div>
+
+        {/* Stipend */}
+        <div className="flex items-center gap-3 text-gray-600">
+          <div className="p-2 bg-gray-50 rounded-xl group-hover:bg-orange-50 group-hover:text-orange-500 transition-colors">
+            <MdOutlinePayments className="text-xl" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold">{stipend}</span>
+            <span className="text-[11px] text-gray-400">Monthly Stipend</span>
+          </div>
+        </div>
+
+        {/* Duration */}
+        <div className="flex items-center gap-3 text-gray-600">
+          <div className="p-2 bg-gray-50 rounded-xl group-hover:bg-orange-50 group-hover:text-orange-500 transition-colors">
+            <IoMdCalendar className="text-xl" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold">{duration}</span>
+            <span className="text-[11px] text-gray-400">Internship Period</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Footer: Meta & Link */}
+      <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
+        <div className="flex items-center gap-2 text-gray-400">
+          <MdWorkOutline />
+          <span className="text-xs font-bold uppercase">Internship</span>
+        </div>
+
+        <Link 
+          href={`/career/${title.replace(/\s+/g, '-').toLowerCase()}`} 
+          className="flex items-center gap-2 text-sm font-bold text-gray-400 group-hover:text-[#fd741e] transition-all duration-300"
+        >
+          View Details 
+          <FaArrowRightLong className="group-hover:translate-x-1 transition-transform"/> 
+        </Link>
+      </div>
+    </motion.div>
+  );
+};
+
+export const JobsCard = ({
+  title,
+  company,
+  location,
+  salary,
+  experience,
+  mode,
+  workType,
+  level,
+  hiringStatus,
+  sector,
+  index = 0,
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.4,
+        delay: index * 0.05,
+      }}
+      whileHover={{ y: -8 }}
+      className="w-full p-6 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] rounded-2xl border border-gray-100 transition-all duration-300 group flex flex-col justify-between h-full"
+    >
+      <div>
+        {/* TOP: Status, Sector & Work Type */}
+        <div className="flex justify-between items-start mb-4 gap-2">
+          <div className="flex flex-col gap-2">
+            <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+              hiringStatus === "Actively hiring" 
+              ? "bg-emerald-50 text-emerald-600 border-emerald-100" 
+              : "bg-gray-50 text-gray-500 border-gray-100"
+            }`}>
+              <FaArrowTrendUp className={hiringStatus === "Actively hiring" ? "animate-pulse" : ""} />
+              {hiringStatus}
+            </div>
+            {/* Sector Badge */}
+            <div className="px-3 py-1 rounded-full bg-orange-50 text-orange-600 text-[10px] font-bold uppercase tracking-wider border border-orange-100 w-fit">
+              {sector}
+            </div>
+          </div>
+          <span className="text-gray-400 text-[11px] font-bold uppercase tracking-tighter">{workType}</span>
+        </div>
+
+        {/* TITLE & COMPANY */}
+        <div className="mb-5">
+          <h2 className="text-xl font-bold text-[#102a42] group-hover:text-[#fd741e] transition-colors line-clamp-1">
+            {title}
+          </h2>
+          <p className="text-sm font-medium text-gray-500">{company}</p>
+        </div>
+
+        {/* MIDDLE: Bento Chips */}
+        <div className="grid grid-cols-2 gap-2 mb-6">
+          <div className="flex items-center gap-2 p-2.5 bg-gray-50 rounded-xl border border-gray-100 group-hover:bg-white group-hover:border-orange-100 transition-all">
+            <MdWorkOutline className="text-orange-500 text-lg" />
+            <div className="flex flex-col">
+               <span className="text-[10px] text-gray-400 font-bold uppercase">Experience</span>
+               <span className="text-xs font-bold text-gray-700">{experience}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 p-2.5 bg-gray-50 rounded-xl border border-gray-100 group-hover:bg-white group-hover:border-orange-100 transition-all">
+            <HiOutlineBadgeCheck className="text-orange-500 text-lg" />
+            <div className="flex flex-col">
+               <span className="text-[10px] text-gray-400 font-bold uppercase">Level</span>
+               <span className="text-xs font-bold text-gray-700">{level}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* DETAILS LIST */}
+        <div className="space-y-4 mb-6">
+          <div className="flex items-center gap-3 text-gray-600 group-hover:translate-x-1 transition-transform">
+            <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-orange-100 group-hover:text-orange-600">
+              <MdLocationOn className="text-lg" />
+            </div>
+            <span className="text-sm font-medium">{location}</span>
+          </div>
+          
+          <div className="flex items-center gap-3 text-gray-600 group-hover:translate-x-1 transition-transform">
+            <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-orange-100 group-hover:text-orange-600">
+              <MdOutlinePayments className="text-lg" />
+            </div>
+            <div className="flex flex-col">
+               <span className="text-sm font-bold text-[#102a42]">{salary}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM: Action Area */}
+      <div className="pt-5 border-t border-dashed border-gray-200 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+           <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_#fd741e]" />
+           <span className="text-[11px] font-extrabold text-[#102a42] uppercase tracking-widest">{mode}</span>
+        </div>
+        
+        <Link 
+          href={`/career/job/${title.replace(/\s+/g, '-').toLowerCase()}`} 
+          className="flex items-center gap-2 text-sm font-bold text-[#102a42] hover:text-[#fd741e] transition-all group/link"
+        >
+          View Details
+          <FaArrowRightLong className="group-hover/link:translate-x-1.5 transition-transform duration-300" />
+        </Link>
+      </div>
+    </motion.div>
   );
 };

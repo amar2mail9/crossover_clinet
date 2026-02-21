@@ -1,4 +1,4 @@
-import Services from "@/page/HomePage/Services/Services";
+import Services from "@/page/Services/Services";
 import React from "react";
 
 const page = () => {
