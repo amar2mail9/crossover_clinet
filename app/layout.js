@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ContactPopup from "@/components/ContactUs/ContactPopup";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -98,6 +100,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+        <SpeedInsights/>
       </body>
     </html>
   );
